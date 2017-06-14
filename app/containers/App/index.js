@@ -15,6 +15,8 @@ import Helmet from 'react-helmet';
 
 // Components
 import withProgressBar from 'components/ProgressBar';
+import Navigation from 'components/Navigation';
+
 // Sadly Scrollbars seems to be breaking useScroll middleware...
 // import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -31,6 +33,7 @@ export const App = ({ children }) => (
       ]}
     />
     <div>
+      <Navigation />
       {React.Children.toArray(children)}
     </div>
   </div>
