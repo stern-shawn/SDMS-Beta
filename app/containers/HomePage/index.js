@@ -18,8 +18,16 @@ import bulma from 'styles/bulma.scss';
 // and see if it plays nicely with Bulma framework!
 const Hero = glamorous.section(
   bulma.hero,
-  bulma['is-primary'],
-  (props) => (bulmaMapping[props.size])
+  (props) => {
+    const mappedClasses = [];
+    // Look at each prop (other than children) and see if it maps to a valid bulma class
+    Object.keys(props)
+      .filter((prop) => prop !== 'children')
+      .forEach((prop) => {
+        mappedClasses.push(`${bulmaMapping[props[prop]]}`);
+      });
+    return mappedClasses.join(' ');
+  }
 );
 
 const HeroBody = glamorous.div(
@@ -41,6 +49,7 @@ const SubTitle = glamorous.h2(
 // Create an object for easy mapping of JS-firendly prop names to bulma's hypenated classes
 const bulmaMapping = {
   isFullheight: bulma['is-fullheight'],
+  isPrimary: bulma['is-primary'],
 };
 
 
@@ -55,7 +64,7 @@ const HomePage = ({ routeParams }) => (
         },
       ]}
     />
-    <Hero size="isFullheight">
+    <Hero size="isFullheight" color="isPrimary">
       <HeroBody>
         <Container>
           <Title>
