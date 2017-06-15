@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import bulma from 'styles/bulma.scss';
 import glamorous from 'glamorous';
 
@@ -71,8 +72,8 @@ class Navigation extends React.Component {
           <NavItem>
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
           </NavItem>
-          <NavTab isActive isHiddenMobile>Home</NavTab>
-          <NavTab isHiddenMobile>Dashboard</NavTab>
+          <NavTab isActive isHiddenMobile><Link to="/">Home</Link></NavTab>
+          <NavTab isHiddenMobile><Link to="/dashboard">Dashboard</Link></NavTab>
           <NavTab isHiddenMobile>Training Log</NavTab>
           <NavTab isHiddenMobile>Plan</NavTab>
         </NavLeft>

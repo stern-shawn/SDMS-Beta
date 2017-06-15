@@ -37,6 +37,25 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/dashboard',
+      name: 'dashboard',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          // import('containers/Dashboard/reducer'),
+          import('containers/Dashboard'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          // injectReducer('home', reducer.default);
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
