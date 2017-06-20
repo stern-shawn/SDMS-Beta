@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import bulma from 'styles/bulma.scss';
 import glamorous from 'glamorous';
 
@@ -27,18 +28,18 @@ const NavRightWithMenu = glamorous(NavRight)(
   (props) => (props.isActive ? bulma['is-active'] : null),
 );
 
-const NavItem = glamorous.a(
+const NavItem = glamorous(Link)(
   bulma['nav-item'],
   (props) => {
     const classList = [];
     // Look at each prop (other than children) and see if it maps to a valid bulma class
     Object.keys(props)
-      .filter((prop) => prop !== 'children')
+      .filter((prop) => !['children', 'to', 'activeClassName'].includes(prop))
       .forEach((prop) => {
         classList.push(`${bulmaMap[prop]}`);
       });
     return classList.join(' ');
-  }
+  },
 );
 
 // Create an object for easy mapping of JS-firendly prop names to bulma's hypenated classes
@@ -48,9 +49,16 @@ const bulmaMap = {
   isHiddenTablet: bulma['is-hidden-tablet'],
 };
 
-const NavTab = glamorous(NavItem)(
+// Glamorous provides forwardProps and rootEl arguments which can be used to specifically pass on
+// props OR prevent the passing of props which are invalid for normal HTML. (ie 'isActive' is not)
+// a true <a> tag attribute and will raise an error
+const NavTab = glamorous(NavItem, { forwardProps: ['to', 'activeClassName'], rootEl: 'a' })(
   bulma['is-tab'],
 );
+
+// Instead of repeating the activeClassName prop as we declare each component, create a wrapper
+// which forwards all given props and injecs the activeClassName prop for less typing
+const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
 
 const NavToggle = glamorous.span(
   bulma['nav-toggle'],
@@ -68,11 +76,11 @@ class Navigation extends React.Component {
     <NavWithShadow>
       <Container>
         <NavLeft>
-          <NavItem>
+          <NavItem to="/">
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
           </NavItem>
-          <NavTab isActive isHiddenMobile>Home</NavTab>
-          <NavTab isHiddenMobile>Dashboard</NavTab>
+          <NavTabWithActive isHiddenMobile to="/">Home</NavTabWithActive>
+          <NavTab isHiddenMobile to="/dashboard" activeClassName={bulma['is-active']}>Dashboard</NavTab>
           <NavTab isHiddenMobile>Training Log</NavTab>
           <NavTab isHiddenMobile>Plan</NavTab>
         </NavLeft>
