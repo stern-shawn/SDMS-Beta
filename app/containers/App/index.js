@@ -12,15 +12,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import Helmet from 'react-helmet';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 // Components
 import withProgressBar from 'components/ProgressBar';
 import Navigation from 'components/Navigation';
 
+import transitions from './transitions.scss';
+
 // Sadly Scrollbars seems to be breaking useScroll middleware...
 // import { Scrollbars } from 'react-custom-scrollbars';
 
-export const App = ({ children }) => (
+// Make sure that children are assigned a unique key so that transitions fire on route change
+export const App = ({ children, location }) => (
   <div>
     <Helmet
       titleTemplate="%s - SDMS"
@@ -34,13 +38,22 @@ export const App = ({ children }) => (
     />
     <div>
       <Navigation />
-      {React.Children.toArray(children)}
+      <CSSTransitionGroup
+        transitionName={transitions}
+        transitionAppear
+        transitionLeave={false}
+        transitionAppearTimeout={250}
+        transitionEnterTimeout={250}
+      >
+        {React.cloneElement(children, { key: location.pathname })}
+      </CSSTransitionGroup>
     </div>
   </div>
 );
 
 App.propTypes = {
   children: PropTypes.node,
+  location: PropTypes.object,
 };
 
 const mapDispatchToProps = {

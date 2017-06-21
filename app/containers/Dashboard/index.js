@@ -1,17 +1,11 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- */
-
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import glamorous from 'glamorous';
 
-// Components
-
-// Styles
 import bulma from 'styles/bulma.scss';
 
 // Experiment with using glamorous to create semantically named components
@@ -50,37 +44,38 @@ const SubTitle = glamorous.h2(
 const bulmaMapping = {
   isFullheight: bulma['is-fullheight'],
   isPrimary: bulma['is-primary'],
+  isDanger: bulma['is-danger'],
 };
 
+export class Dashboard extends Component {
+  render() {
+    return (
+      <Hero size="isFullheight" color="isDanger">
+        <HeroBody>
+          <Container>
+            <Title>
+              Client Dashboard
+            </Title>
+            <SubTitle>
+              Overview of your progress
+            </SubTitle>
+          </Container>
+        </HeroBody>
+      </Hero>
+    );
+  }
+}
 
-const HomePage = () => (
-  <article>
-    <Helmet
-      title="Home Page"
-      meta={[
-        {
-          name: 'description',
-          content: 'Home to track, plan, and predict your strength progress and goals',
-        },
-      ]}
-    />
-    <Hero size="isFullheight" color="isPrimary">
-      <HeroBody>
-        <Container>
-          <Title>
-            Welcome
-          </Title>
-          <SubTitle>
-            Strength Development Management System
-          </SubTitle>
-        </Container>
-      </HeroBody>
-    </Hero>
-  </article>
-);
-
-HomePage.propTypes = {
-  // routeParams: PropTypes.object.isRequired,
+Dashboard.propTypes = {
 };
 
-export default HomePage;
+// Need to export so we can test and have full test coverage in Jest
+export const mapDispatchToProps = {
+};
+
+const mapStateToProps = createStructuredSelector({
+  // currentPage: makeSelectCurrentPage(),
+});
+
+// Wrap the component to inject dispatch and state
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
