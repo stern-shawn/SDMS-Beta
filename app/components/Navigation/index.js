@@ -6,10 +6,7 @@ import glamorous from 'glamorous';
 // Components
 import Container from 'components/Bulma/Container';
 import Nav from 'components/Bulma/Nav';
-
-const NavLeft = glamorous.div(
-  bulma['nav-left'],
-);
+import NavLeft from 'components/Bulma/NavLeft';
 
 const NavRight = glamorous.div(
   bulma['nav-right'],
