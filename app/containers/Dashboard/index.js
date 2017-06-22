@@ -10,13 +10,10 @@ import Hero from 'components/Bulma/Hero';
 import HeroBody from 'components/Bulma/HeroBody';
 import Container from 'components/Bulma/Container';
 import Title from 'components/Bulma/Title';
+import SubTitle from 'components/Bulma/SubTitle';
 
 // Styles
 import bulma from 'styles/bulma.scss';
-
-const SubTitle = glamorous.h2(
-  bulma.subtitle,
-);
 
 export class Dashboard extends Component {
   render() {
