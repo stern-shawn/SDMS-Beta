@@ -3,7 +3,7 @@ import bulma from 'styles/bulma.scss';
 
 // Components
 import Container from 'components/Bulma/Layout/Container';
-import Nav from 'components/Bulma/Components/Nav/Nav';
+import Nav from 'components/Bulma/Components/Nav';
 import NavLeft from 'components/Bulma/Components/Nav/NavLeft';
 import NavRight from 'components/Bulma/Components/Nav/NavRight';
 import NavItem from 'components/Bulma/Components/Nav/NavItem';
