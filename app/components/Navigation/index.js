@@ -8,13 +8,7 @@ import Nav from 'components/Bulma/Nav';
 import NavLeft from 'components/Bulma/NavLeft';
 import NavRight from 'components/Bulma/NavRight';
 import NavItem from 'components/Bulma/NavItem';
-
-// Glamorous provides forwardProps and rootEl arguments which can be used to specifically pass on
-// props OR prevent the passing of props which are invalid for normal HTML. (ie 'isActive' is not)
-// a true <a> tag attribute and will raise an error
-const NavTab = glamorous(NavItem, { forwardProps: ['to', 'activeClassName'], rootEl: 'a' })(
-  bulma['is-tab'],
-);
+import NavTab from 'components/Bulma/NavTab';
 
 // Instead of repeating the activeClassName prop as we declare each component, create a wrapper
 // which forwards all given props and injecs the activeClassName prop for less typing
