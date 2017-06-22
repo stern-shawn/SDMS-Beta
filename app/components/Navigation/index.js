@@ -3,16 +3,12 @@ import { Link } from 'react-router';
 import bulma from 'styles/bulma.scss';
 import glamorous from 'glamorous';
 
-// const navTabHiddenMobile = `${bulma['nav-item']} ${bulma['is-tab']} ${bulma['is-hidden-mobile']}`;
-// const navTabHiddenTablet = `${bulma['nav-item']} ${bulma['is-tab']} ${bulma['is-hidden-tablet']}`;
+// Components
+import Container from 'components/Bulma/Container';
 
 const NavWithShadow = glamorous.nav(
   bulma.nav,
   bulma['has-shadow'],
-);
-
-const Container = glamorous.div(
-  bulma.container,
 );
 
 const NavLeft = glamorous.div(
