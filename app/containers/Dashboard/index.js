@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 // Components
-import Hero from 'components/Bulma/Layout/Hero/Hero';
+import Hero from 'components/Bulma/Layout/Hero';
 import HeroBody from 'components/Bulma/Layout/Hero/HeroBody';
 import Container from 'components/Bulma/Layout/Container';
 import Title from 'components/Bulma/Title';
