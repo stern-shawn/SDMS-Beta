@@ -1,6 +1,5 @@
 import React from 'react';
 import bulma from 'styles/bulma.scss';
-import glamorous from 'glamorous';
 
 // Components
 import Container from 'components/Bulma/Container';
