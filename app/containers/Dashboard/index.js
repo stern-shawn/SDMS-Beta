@@ -3,48 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import glamorous from 'glamorous';
 
-import bulma from 'styles/bulma.scss';
+// Components
+import Hero from 'components/Bulma/Hero';
+import HeroBody from 'components/Bulma/HeroBody';
+import Container from 'components/Bulma/Container';
+import Title from 'components/Bulma/Title';
+import SubTitle from 'components/Bulma/SubTitle';
 
-// Experiment with using glamorous to create semantically named components
-// and see if it plays nicely with Bulma framework!
-const Hero = glamorous.section(
-  bulma.hero,
-  (props) => {
-    const mappedClasses = [];
-    // Look at each prop (other than children) and see if it maps to a valid bulma class
-    Object.keys(props)
-      .filter((prop) => prop !== 'children')
-      .forEach((prop) => {
-        mappedClasses.push(`${bulmaMapping[props[prop]]}`);
-      });
-    return mappedClasses.join(' ');
-  }
-);
-
-const HeroBody = glamorous.div(
-  bulma['hero-body'],
-);
-
-const Container = glamorous.div(
-  bulma.container,
-);
-
-const Title = glamorous.h1(
-  bulma.title,
-);
-
-const SubTitle = glamorous.h2(
-  bulma.subtitle,
-);
-
-// Create an object for easy mapping of JS-firendly prop names to bulma's hypenated classes
-const bulmaMapping = {
-  isFullheight: bulma['is-fullheight'],
-  isPrimary: bulma['is-primary'],
-  isDanger: bulma['is-danger'],
-};
+// Styles
 
 export class Dashboard extends Component {
   render() {
