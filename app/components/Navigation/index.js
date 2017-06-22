@@ -5,11 +5,7 @@ import glamorous from 'glamorous';
 
 // Components
 import Container from 'components/Bulma/Container';
-
-const NavWithShadow = glamorous.nav(
-  bulma.nav,
-  bulma['has-shadow'],
-);
+import Nav from 'components/Bulma/Nav';
 
 const NavLeft = glamorous.div(
   bulma['nav-left'],
@@ -69,7 +65,7 @@ class Navigation extends React.Component {
   };
 
   render = () => (
-    <NavWithShadow>
+    <Nav hasShadow>
       <Container>
         <NavLeft>
           <NavItem to="/">
@@ -99,7 +95,7 @@ class Navigation extends React.Component {
           <NavTab>Log out</NavTab>
         </NavRightWithMenu>
       </Container>
-    </NavWithShadow>
+    </Nav>
   );
 }
 
