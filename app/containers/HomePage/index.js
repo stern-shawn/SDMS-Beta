@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 
 // Components
-import Hero from 'components/Bulma/Hero';
-import HeroBody from 'components/Bulma/HeroBody';
-import Container from 'components/Bulma/Container';
+import Hero from 'components/Bulma/Layout/Hero/Hero';
+import HeroBody from 'components/Bulma/Layout/Hero/HeroBody';
+import Container from 'components/Bulma/Layout/Container';
 import Title from 'components/Bulma/Title';
 import SubTitle from 'components/Bulma/SubTitle';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import bulma from 'styles/bulma.scss';
 
 // Components
-import Container from 'components/Bulma/Container';
+import Container from 'components/Bulma/Layout/Container';
 import Nav from 'components/Bulma/Components/Nav/Nav';
 import NavLeft from 'components/Bulma/Components/Nav/NavLeft';
 import NavRight from 'components/Bulma/Components/Nav/NavRight';
