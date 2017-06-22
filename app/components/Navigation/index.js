@@ -9,15 +9,11 @@ import NavLeft from 'components/Bulma/NavLeft';
 import NavRight from 'components/Bulma/NavRight';
 import NavItem from 'components/Bulma/NavItem';
 import NavTab from 'components/Bulma/NavTab';
+import NavToggle from 'components/Bulma/NavToggle';
 
 // Instead of repeating the activeClassName prop as we declare each component, create a wrapper
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
-
-const NavToggle = glamorous.span(
-  bulma['nav-toggle'],
-  (props) => (props.isActive ? bulma['is-active'] : null)
-);
 
 class Navigation extends React.Component {
   // ES7 state. Only using this for mockup purposes to validate that dynamic props work with
