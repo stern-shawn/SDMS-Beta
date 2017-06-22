@@ -3,12 +3,12 @@ import bulma from 'styles/bulma.scss';
 
 // Components
 import Container from 'components/Bulma/Container';
-import Nav from 'components/Bulma/Nav';
-import NavLeft from 'components/Bulma/NavLeft';
-import NavRight from 'components/Bulma/NavRight';
-import NavItem from 'components/Bulma/NavItem';
-import NavTab from 'components/Bulma/NavTab';
-import NavToggle from 'components/Bulma/NavToggle';
+import Nav from 'components/Bulma/Components/Nav/Nav';
+import NavLeft from 'components/Bulma/Components/Nav/NavLeft';
+import NavRight from 'components/Bulma/Components/Nav/NavRight';
+import NavItem from 'components/Bulma/Components/Nav/NavItem';
+import NavTab from 'components/Bulma/Components/Nav/NavTab';
+import NavToggle from 'components/Bulma/Components/Nav/NavToggle';
 
 // Instead of repeating the activeClassName prop as we declare each component, create a wrapper
 // which forwards all given props and injecs the activeClassName prop for less typing
