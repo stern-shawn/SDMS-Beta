@@ -7,7 +7,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import glamorous from 'glamorous';
 
 // Components
 import Hero from 'components/Bulma/Hero';
@@ -17,7 +16,6 @@ import Title from 'components/Bulma/Title';
 import SubTitle from 'components/Bulma/SubTitle';
 
 // Styles
-import bulma from 'styles/bulma.scss';
 
 const HomePage = () => (
   <article>
