@@ -18,13 +18,21 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import withProgressBar from 'components/ProgressBar';
 import Navigation from 'components/Navigation';
 
+// Actions
+import * as actions from './actions';
+
+// State selectors
+import {
+  makeSelectMobileNavActive,
+} from './selectors';
+
 import transitions from './transitions.scss';
 
 // Sadly Scrollbars seems to be breaking useScroll middleware...
 // import { Scrollbars } from 'react-custom-scrollbars';
 
 // Make sure that children are assigned a unique key so that transitions fire on route change
-export const App = ({ children, location }) => (
+export const App = ({ children, location, mobileNavActive, toggleMobileNav }) => (
   <div>
     <Helmet
       titleTemplate="%s - SDMS"
@@ -37,7 +45,7 @@ export const App = ({ children, location }) => (
       ]}
     />
     <div>
-      <Navigation />
+      <Navigation mobileNavActive={mobileNavActive} toggleMobileNav={toggleMobileNav} />
       <CSSTransitionGroup
         transitionName={transitions}
         transitionAppear
@@ -54,12 +62,12 @@ export const App = ({ children, location }) => (
 App.propTypes = {
   children: PropTypes.node,
   location: PropTypes.object,
-};
-
-const mapDispatchToProps = {
+  mobileNavActive: PropTypes.bool.isRequired,
+  toggleMobileNav: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
+  mobileNavActive: makeSelectMobileNavActive(),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withProgressBar(App));
+export default connect(mapStateToProps, actions)(withProgressBar(App));

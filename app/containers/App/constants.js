@@ -9,9 +9,6 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CLOSE_DRAWER = 'keystone/App/CLOSE_DRAWER';
-export const TOGGLE_DRAWER = 'keystone/App/TOGGLE_DRAWER';
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const CLOSE_MOBILE_NAV = 'sdms/App/CLOSE_MOBILE_NAV';
+export const TOGGLE_MOBILE_NAV = 'sdms/App/TOGGLE_MOBILE_NAV';
 export const DEFAULT_LOCALE = 'en';

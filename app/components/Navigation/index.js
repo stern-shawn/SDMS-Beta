@@ -1,4 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+// Styles
 import bulma from 'styles/bulma.scss';
 
 // Components
@@ -17,40 +20,37 @@ import tabs from './navigation.json';
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
 
-class Navigation extends React.Component {
-  // ES7 state. Only using this for mockup purposes to validate that dynamic props work with
-  // changes to state/props
-  state = {
-    mobileMenuActive: false,
-  };
+const Navigation = ({ mobileNavActive, toggleMobileNav }) => (
+  <Nav hasShadow>
+    <Container>
+      <NavLeft>
+        <NavItem to="/">
+          <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
+        </NavItem>
+        {tabs.map((tab, idx) => <NavTabWithActive isHiddenMobile to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
+      </NavLeft>
+      <NavToggle isActive={mobileNavActive} onClick={toggleMobileNav}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </NavToggle>
+      <NavRight hasMenu isActive={mobileNavActive}>
+        {tabs.map((tab, idx) => <NavTabWithActive isHiddenTablet to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
+        <NavTab>
+          <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
+            <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />
+          </figure>
+          Profile
+        </NavTab>
+        <NavTab>Log out</NavTab>
+      </NavRight>
+    </Container>
+  </Nav>
+);
 
-  render = () => (
-    <Nav hasShadow>
-      <Container>
-        <NavLeft>
-          <NavItem to="/">
-            <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
-          </NavItem>
-          {tabs.map((tab, idx) => <NavTabWithActive isHiddenMobile to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
-        </NavLeft>
-        <NavToggle isActive={this.state.mobileMenuActive} onClick={() => { console.log('toggle mobile'); this.setState({ mobileMenuActive: !this.state.mobileMenuActive }); }}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </NavToggle>
-        <NavRight hasMenu isActive={this.state.mobileMenuActive}>
-          {tabs.map((tab, idx) => <NavTabWithActive isHiddenTablet to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
-          <NavTab>
-            <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
-              <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />
-            </figure>
-            Profile
-          </NavTab>
-          <NavTab>Log out</NavTab>
-        </NavRight>
-      </Container>
-    </Nav>
-  );
-}
+Navigation.propTypes = {
+  mobileNavActive: PropTypes.bool.isRequired,
+  toggleMobileNav: PropTypes.func.isRequired,
+};
 
 export default Navigation;
