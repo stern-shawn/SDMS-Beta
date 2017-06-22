@@ -9,13 +9,10 @@ import glamorous from 'glamorous';
 import Hero from 'components/Bulma/Hero';
 import HeroBody from 'components/Bulma/HeroBody';
 import Container from 'components/Bulma/Container';
+import Title from 'components/Bulma/Title';
 
 // Styles
 import bulma from 'styles/bulma.scss';
-
-const Title = glamorous.h1(
-  bulma.title,
-);
 
 const SubTitle = glamorous.h2(
   bulma.subtitle,
