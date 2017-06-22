@@ -12,8 +12,8 @@ import Helmet from 'react-helmet';
 import Hero from 'components/Bulma/Layout/Hero';
 import HeroBody from 'components/Bulma/Layout/Hero/HeroBody';
 import Container from 'components/Bulma/Layout/Container';
-import Title from 'components/Bulma/Title';
-import SubTitle from 'components/Bulma/SubTitle';
+import Title from 'components/Bulma/Elements/Title';
+import SubTitle from 'components/Bulma/Elements/SubTitle';
 
 // Styles
 
