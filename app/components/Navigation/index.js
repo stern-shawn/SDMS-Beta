@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import bulma from 'styles/bulma.scss';
 import glamorous from 'glamorous';
 
@@ -8,27 +7,7 @@ import Container from 'components/Bulma/Container';
 import Nav from 'components/Bulma/Nav';
 import NavLeft from 'components/Bulma/NavLeft';
 import NavRight from 'components/Bulma/NavRight';
-
-const NavItem = glamorous(Link)(
-  bulma['nav-item'],
-  (props) => {
-    const classList = [];
-    // Look at each prop (other than children) and see if it maps to a valid bulma class
-    Object.keys(props)
-      .filter((prop) => !['children', 'to', 'activeClassName'].includes(prop))
-      .forEach((prop) => {
-        classList.push(`${bulmaMap[prop]}`);
-      });
-    return classList.join(' ');
-  },
-);
-
-// Create an object for easy mapping of JS-firendly prop names to bulma's hypenated classes
-const bulmaMap = {
-  isActive: bulma['is-active'],
-  isHiddenMobile: bulma['is-hidden-mobile'],
-  isHiddenTablet: bulma['is-hidden-tablet'],
-};
+import NavItem from 'components/Bulma/NavItem';
 
 // Glamorous provides forwardProps and rootEl arguments which can be used to specifically pass on
 // props OR prevent the passing of props which are invalid for normal HTML. (ie 'isActive' is not)
