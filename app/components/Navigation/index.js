@@ -29,9 +29,9 @@ class Navigation extends React.Component {
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
           </NavItem>
           <NavTabWithActive isHiddenMobile to="/">Home</NavTabWithActive>
-          <NavTab isHiddenMobile to="/dashboard" activeClassName={bulma['is-active']}>Dashboard</NavTab>
-          <NavTab isHiddenMobile>Training Log</NavTab>
-          <NavTab isHiddenMobile>Plan</NavTab>
+          <NavTabWithActive isHiddenMobile to="/dashboard">Dashboard</NavTabWithActive>
+          <NavTabWithActive isHiddenMobile to="/log">Training Log</NavTabWithActive>
+          <NavTabWithActive isHiddenMobile to="/coach">Coach</NavTabWithActive>
         </NavLeft>
         <NavToggle isActive={this.state.mobileMenuActive} onClick={() => { console.log('toggle mobile'); this.setState({ mobileMenuActive: !this.state.mobileMenuActive }); }}>
           <span></span>
@@ -39,10 +39,10 @@ class Navigation extends React.Component {
           <span></span>
         </NavToggle>
         <NavRight hasMenu isActive={this.state.mobileMenuActive}>
-          <NavTab isActive isHiddenTablet>Home</NavTab>
-          <NavTab isHiddenTablet>Dashboard</NavTab>
-          <NavTab isHiddenTablet>Training Log</NavTab>
-          <NavTab isHiddenTablet>Plan</NavTab>
+          <NavTabWithActive isHiddenTablet to="/">Home</NavTabWithActive>
+          <NavTabWithActive isHiddenTablet to="/dashboard">Dashboard</NavTabWithActive>
+          <NavTabWithActive isHiddenTablet to="/log">Training Log</NavTabWithActive>
+          <NavTabWithActive isHiddenTablet to="/coach">Coach</NavTabWithActive>
           <NavTab>
             <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
               <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />
