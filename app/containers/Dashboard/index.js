@@ -8,13 +8,10 @@ import glamorous from 'glamorous';
 // Components
 import Hero from 'components/Bulma/Hero';
 import HeroBody from 'components/Bulma/HeroBody';
+import Container from 'components/Bulma/Container';
 
 // Styles
 import bulma from 'styles/bulma.scss';
-
-const Container = glamorous.div(
-  bulma.container,
-);
 
 const Title = glamorous.h1(
   bulma.title,
