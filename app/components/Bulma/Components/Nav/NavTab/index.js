@@ -1,7 +1,7 @@
 import glamorous from 'glamorous';
 import bulma from 'styles/bulma.scss';
 
-import NavItem from 'components/Bulma/NavItem';
+import NavItem from 'components/Bulma/Components/Nav/NavItem';
 
 // Glamorous provides forwardProps and rootEl arguments which can be used to specifically pass on
 // props OR prevent the passing of props which are invalid for normal HTML. (ie 'isActive' is not)
