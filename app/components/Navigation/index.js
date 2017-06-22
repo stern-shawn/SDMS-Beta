@@ -7,15 +7,7 @@ import glamorous from 'glamorous';
 import Container from 'components/Bulma/Container';
 import Nav from 'components/Bulma/Nav';
 import NavLeft from 'components/Bulma/NavLeft';
-
-const NavRight = glamorous.div(
-  bulma['nav-right'],
-);
-
-const NavRightWithMenu = glamorous(NavRight)(
-  bulma['nav-menu'],
-  (props) => (props.isActive ? bulma['is-active'] : null),
-);
+import NavRight from 'components/Bulma/NavRight';
 
 const NavItem = glamorous(Link)(
   bulma['nav-item'],
@@ -78,7 +70,7 @@ class Navigation extends React.Component {
           <span></span>
           <span></span>
         </NavToggle>
-        <NavRightWithMenu isActive={this.state.mobileMenuActive}>
+        <NavRight hasMenu isActive={this.state.mobileMenuActive}>
           <NavTab isActive isHiddenTablet>Home</NavTab>
           <NavTab isHiddenTablet>Dashboard</NavTab>
           <NavTab isHiddenTablet>Training Log</NavTab>
@@ -90,7 +82,7 @@ class Navigation extends React.Component {
             Profile
           </NavTab>
           <NavTab>Log out</NavTab>
-        </NavRightWithMenu>
+        </NavRight>
       </Container>
     </Nav>
   );
