@@ -10,6 +10,9 @@ import NavItem from 'components/Bulma/Components/Nav/NavItem';
 import NavTab from 'components/Bulma/Components/Nav/NavTab';
 import NavToggle from 'components/Bulma/Components/Nav/NavToggle';
 
+// Raw data
+import tabs from './navigation.json';
+
 // Instead of repeating the activeClassName prop as we declare each component, create a wrapper
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
@@ -28,10 +31,7 @@ class Navigation extends React.Component {
           <NavItem to="/">
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
           </NavItem>
-          <NavTabWithActive isHiddenMobile to="/">Home</NavTabWithActive>
-          <NavTabWithActive isHiddenMobile to="/dashboard">Dashboard</NavTabWithActive>
-          <NavTabWithActive isHiddenMobile to="/log">Training Log</NavTabWithActive>
-          <NavTabWithActive isHiddenMobile to="/coach">Coach</NavTabWithActive>
+          {tabs.map((tab, idx) => <NavTabWithActive isHiddenMobile to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
         </NavLeft>
         <NavToggle isActive={this.state.mobileMenuActive} onClick={() => { console.log('toggle mobile'); this.setState({ mobileMenuActive: !this.state.mobileMenuActive }); }}>
           <span></span>
@@ -39,10 +39,7 @@ class Navigation extends React.Component {
           <span></span>
         </NavToggle>
         <NavRight hasMenu isActive={this.state.mobileMenuActive}>
-          <NavTabWithActive isHiddenTablet to="/">Home</NavTabWithActive>
-          <NavTabWithActive isHiddenTablet to="/dashboard">Dashboard</NavTabWithActive>
-          <NavTabWithActive isHiddenTablet to="/log">Training Log</NavTabWithActive>
-          <NavTabWithActive isHiddenTablet to="/coach">Coach</NavTabWithActive>
+          {tabs.map((tab, idx) => <NavTabWithActive isHiddenTablet to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
           <NavTab>
             <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
               <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />

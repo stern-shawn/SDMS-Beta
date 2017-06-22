@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Home",
+    "to": "/"
+  },
+  {
+    "title": "Dashboard",
+    "to": "/dashboard"
+  },
+  {
+    "title": "Training Log",
+    "to": "/log"
+  },
+  {
+    "title": "Coach",
+    "to": "/coach"
+  }
+]
+
