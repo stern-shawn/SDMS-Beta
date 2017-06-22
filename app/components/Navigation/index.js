@@ -1,69 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
 import bulma from 'styles/bulma.scss';
-import glamorous from 'glamorous';
 
-// const navTabHiddenMobile = `${bulma['nav-item']} ${bulma['is-tab']} ${bulma['is-hidden-mobile']}`;
-// const navTabHiddenTablet = `${bulma['nav-item']} ${bulma['is-tab']} ${bulma['is-hidden-tablet']}`;
-
-const NavWithShadow = glamorous.nav(
-  bulma.nav,
-  bulma['has-shadow'],
-);
-
-const Container = glamorous.div(
-  bulma.container,
-);
-
-const NavLeft = glamorous.div(
-  bulma['nav-left'],
-);
-
-const NavRight = glamorous.div(
-  bulma['nav-right'],
-);
-
-const NavRightWithMenu = glamorous(NavRight)(
-  bulma['nav-menu'],
-  (props) => (props.isActive ? bulma['is-active'] : null),
-);
-
-const NavItem = glamorous(Link)(
-  bulma['nav-item'],
-  (props) => {
-    const classList = [];
-    // Look at each prop (other than children) and see if it maps to a valid bulma class
-    Object.keys(props)
-      .filter((prop) => !['children', 'to', 'activeClassName'].includes(prop))
-      .forEach((prop) => {
-        classList.push(`${bulmaMap[prop]}`);
-      });
-    return classList.join(' ');
-  },
-);
-
-// Create an object for easy mapping of JS-firendly prop names to bulma's hypenated classes
-const bulmaMap = {
-  isActive: bulma['is-active'],
-  isHiddenMobile: bulma['is-hidden-mobile'],
-  isHiddenTablet: bulma['is-hidden-tablet'],
-};
-
-// Glamorous provides forwardProps and rootEl arguments which can be used to specifically pass on
-// props OR prevent the passing of props which are invalid for normal HTML. (ie 'isActive' is not)
-// a true <a> tag attribute and will raise an error
-const NavTab = glamorous(NavItem, { forwardProps: ['to', 'activeClassName'], rootEl: 'a' })(
-  bulma['is-tab'],
-);
+// Components
+import Container from 'components/Bulma/Layout/Container';
+import Nav from 'components/Bulma/Components/Nav';
+import NavLeft from 'components/Bulma/Components/Nav/NavLeft';
+import NavRight from 'components/Bulma/Components/Nav/NavRight';
+import NavItem from 'components/Bulma/Components/Nav/NavItem';
+import NavTab from 'components/Bulma/Components/Nav/NavTab';
+import NavToggle from 'components/Bulma/Components/Nav/NavToggle';
 
 // Instead of repeating the activeClassName prop as we declare each component, create a wrapper
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
-
-const NavToggle = glamorous.span(
-  bulma['nav-toggle'],
-  (props) => (props.isActive ? bulma['is-active'] : null)
-);
 
 class Navigation extends React.Component {
   // ES7 state. Only using this for mockup purposes to validate that dynamic props work with
@@ -73,27 +22,27 @@ class Navigation extends React.Component {
   };
 
   render = () => (
-    <NavWithShadow>
+    <Nav hasShadow>
       <Container>
         <NavLeft>
           <NavItem to="/">
             <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
           </NavItem>
           <NavTabWithActive isHiddenMobile to="/">Home</NavTabWithActive>
-          <NavTab isHiddenMobile to="/dashboard" activeClassName={bulma['is-active']}>Dashboard</NavTab>
-          <NavTab isHiddenMobile>Training Log</NavTab>
-          <NavTab isHiddenMobile>Plan</NavTab>
+          <NavTabWithActive isHiddenMobile to="/dashboard">Dashboard</NavTabWithActive>
+          <NavTabWithActive isHiddenMobile to="/log">Training Log</NavTabWithActive>
+          <NavTabWithActive isHiddenMobile to="/coach">Coach</NavTabWithActive>
         </NavLeft>
         <NavToggle isActive={this.state.mobileMenuActive} onClick={() => { console.log('toggle mobile'); this.setState({ mobileMenuActive: !this.state.mobileMenuActive }); }}>
           <span></span>
           <span></span>
           <span></span>
         </NavToggle>
-        <NavRightWithMenu isActive={this.state.mobileMenuActive}>
-          <NavTab isActive isHiddenTablet>Home</NavTab>
-          <NavTab isHiddenTablet>Dashboard</NavTab>
-          <NavTab isHiddenTablet>Training Log</NavTab>
-          <NavTab isHiddenTablet>Plan</NavTab>
+        <NavRight hasMenu isActive={this.state.mobileMenuActive}>
+          <NavTabWithActive isHiddenTablet to="/">Home</NavTabWithActive>
+          <NavTabWithActive isHiddenTablet to="/dashboard">Dashboard</NavTabWithActive>
+          <NavTabWithActive isHiddenTablet to="/log">Training Log</NavTabWithActive>
+          <NavTabWithActive isHiddenTablet to="/coach">Coach</NavTabWithActive>
           <NavTab>
             <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
               <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />
@@ -101,9 +50,9 @@ class Navigation extends React.Component {
             Profile
           </NavTab>
           <NavTab>Log out</NavTab>
-        </NavRightWithMenu>
+        </NavRight>
       </Container>
-    </NavWithShadow>
+    </Nav>
   );
 }
 

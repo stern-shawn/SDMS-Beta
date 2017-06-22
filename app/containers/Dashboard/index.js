@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 // Components
-import Hero from 'components/Bulma/Hero';
-import HeroBody from 'components/Bulma/HeroBody';
-import Container from 'components/Bulma/Container';
-import Title from 'components/Bulma/Title';
-import SubTitle from 'components/Bulma/SubTitle';
+import Hero from 'components/Bulma/Layout/Hero';
+import HeroBody from 'components/Bulma/Layout/Hero/HeroBody';
+import Container from 'components/Bulma/Layout/Container';
+import Title from 'components/Bulma/Elements/Title';
+import SubTitle from 'components/Bulma/Elements/SubTitle';
 
 // Styles
 
