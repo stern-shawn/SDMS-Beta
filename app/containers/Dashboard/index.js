@@ -5,23 +5,12 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import glamorous from 'glamorous';
 
-import bulma from 'styles/bulma.scss';
+// Components
+import Hero from 'components/Bulma/Hero';
 
-// Experiment with using glamorous to create semantically named components
-// and see if it plays nicely with Bulma framework!
-const Hero = glamorous.section(
-  bulma.hero,
-  (props) => {
-    const mappedClasses = [];
-    // Look at each prop (other than children) and see if it maps to a valid bulma class
-    Object.keys(props)
-      .filter((prop) => prop !== 'children')
-      .forEach((prop) => {
-        mappedClasses.push(`${bulmaMapping[props[prop]]}`);
-      });
-    return mappedClasses.join(' ');
-  }
-);
+// Styles
+
+import bulma from 'styles/bulma.scss';
 
 const HeroBody = glamorous.div(
   bulma['hero-body'],
@@ -38,13 +27,6 @@ const Title = glamorous.h1(
 const SubTitle = glamorous.h2(
   bulma.subtitle,
 );
-
-// Create an object for easy mapping of JS-firendly prop names to bulma's hypenated classes
-const bulmaMapping = {
-  isFullheight: bulma['is-fullheight'],
-  isPrimary: bulma['is-primary'],
-  isDanger: bulma['is-danger'],
-};
 
 export class Dashboard extends Component {
   render() {
