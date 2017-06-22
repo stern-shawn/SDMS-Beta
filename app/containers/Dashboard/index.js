@@ -7,14 +7,10 @@ import glamorous from 'glamorous';
 
 // Components
 import Hero from 'components/Bulma/Hero';
+import HeroBody from 'components/Bulma/HeroBody';
 
 // Styles
-
 import bulma from 'styles/bulma.scss';
-
-const HeroBody = glamorous.div(
-  bulma['hero-body'],
-);
 
 const Container = glamorous.div(
   bulma.container,
