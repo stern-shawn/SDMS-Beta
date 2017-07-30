@@ -16,6 +16,10 @@ router.get('/', (req, res) => {
   res.json({ greeting: 'Hello lifter 1' });
 });
 
+router.get('/protected', requireAuth, (req, res) => {
+  res.send({ message: 'Super Secret code is LIGHTWEIGHT BABY!' });
+});
+
 router.post('/signin', requireSignin, userController.signin);
 router.post('/signup', userController.signup);
 
