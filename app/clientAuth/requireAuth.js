@@ -10,9 +10,9 @@ import { makeSelectAuthenticated } from 'clientAuth/selectors';
 export default function (ComposedComponent) {
   class Authentication extends Component {
     componentWillMount() {
-      // Redirect user to home if they are not authenticated
+      // Redirect user to signin if they are not authenticated and try to access a resource
       if (!this.props.authenticated) {
-        browserHistory.push('/');
+        browserHistory.push('/signin');
       }
     }
 

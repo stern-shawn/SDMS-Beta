@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import requireAuth from 'clientAuth/requireAuth';
 // Components
 import Hero from 'components/Bulma/Layout/Hero';
 import HeroBody from 'components/Bulma/Layout/Hero/HeroBody';
@@ -13,6 +14,7 @@ import SubTitle from 'components/Bulma/Elements/SubTitle';
 
 // Styles
 
+@requireAuth
 export class Dashboard extends Component {
   render() {
     return (
