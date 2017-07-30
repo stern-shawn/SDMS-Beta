@@ -19,6 +19,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 
 class SignIn extends Component {
   onSubmit = (values) => {
+    // 'values' is an ImmutableJS Map, so we need to retrieve using .get
     const [email, password] = [values.get('email'), values.get('password')];
     this.props.signIn(email, password);
   }

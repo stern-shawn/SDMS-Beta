@@ -19,7 +19,7 @@ export default function (ComposedComponent) {
     // Add in an update hook so that if the user signs out (which will update the authentication prop)
     // we run a check and do a forced redirect to home
     componentWillUpdate(nextProps) {
-      if (!nextProps.authenticated) {
+      if (this.props.authenticated && !nextProps.authenticated) {
         browserHistory.push('/');
       }
     }
