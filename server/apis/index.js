@@ -1,7 +1,11 @@
+// Library dependencies
 const express = require('express');
-const userController = require('../controllers/userController');
-const passportService = require('../services/passport');
 const passport = require('passport');
+// Controllers
+const userController = require('../controllers/userController');
+const validationController = require('../controllers/validationController');
+// Router services
+const passportService = require('../services/passport');
 
 // Middleware to authenticate using jwt, and DON'T create a cookie session (since we're doing jwt anyway)
 const requireAuth = passport.authenticate('jwt', { session: false });
@@ -21,6 +25,6 @@ router.get('/protected', requireAuth, (req, res) => {
 });
 
 router.post('/signin', requireSignin, userController.signin);
-router.post('/signup', userController.signup);
+router.post('/signup', validationController.validateSignup, userController.signup);
 
 module.exports = router;

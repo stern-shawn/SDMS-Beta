@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 
@@ -26,6 +27,7 @@ mongoose.connect(process.env.MLAB, {
 // Back-end api/data management routing
 app.use(morgan('dev'));  // Logging middleware
 app.use(bodyParser.json());
+app.use(expressValidator()); // Append a number of helpful validation methods to the req object
 app.use('/api', api);
 
 // In production we need to pass these values in instead of relying on webpack
