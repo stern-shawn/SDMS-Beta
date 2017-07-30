@@ -9,6 +9,7 @@ import {
   SIGN_OUT,
 } from './constants';
 import {
+  deauthUser,
   signInError,
   signInSuccess,
 } from './actions';
@@ -33,6 +34,16 @@ const signInEpic = (action$) =>
         .catch((err) => Observable.of(signInError(err)))
     );
 
+const signOutEpic = (action$) =>
+  action$.ofType(SIGN_OUT)
+    .switchMap(() => {
+      // Clear the JWT and profile from local storage. Redirect will be handled by HOC
+      localStorage.removeItem('token');
+      localStorage.removeItem('userProfile');
+      return Observable.of(deauthUser());
+    });
+
 export {
   signInEpic,
+  signOutEpic,
 };

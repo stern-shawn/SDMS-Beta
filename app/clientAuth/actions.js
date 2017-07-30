@@ -5,9 +5,22 @@
 import {
   AUTH_ERROR,
   AUTH_USER,
+  DEAUTH_USER,
   SIGN_IN,
   SIGN_OUT,
 } from './constants';
+
+/**
+ * Clear state tree on user sign out
+ * @param {String} email      User email
+ * @param {String} password   User password
+ * @return {object}           An action object of type SIGN_IN and bundled user credentials
+ */
+function deauthUser() {
+  return {
+    type: DEAUTH_USER,
+  };
+}
 
 /**
  * Request by the user to sign in using their email and password
@@ -59,6 +72,7 @@ function signOut() {
 }
 
 export {
+  deauthUser,
   signIn,
   signInError,
   signInSuccess,

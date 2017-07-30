@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import * as actions from 'clientAuth/actions';
 
 // Styles
 import bulma from 'styles/bulma.scss';
@@ -20,7 +23,7 @@ import tabs from './navigation.json';
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
 
-const Navigation = ({ mobileNavActive, toggleMobileNav }) => (
+const Navigation = ({ signOut, mobileNavActive, toggleMobileNav }) => (
   <Nav hasShadow>
     <Container>
       <NavLeft>
@@ -42,15 +45,16 @@ const Navigation = ({ mobileNavActive, toggleMobileNav }) => (
           </figure>
           Profile
         </NavTab>
-        <NavTab>Log out</NavTab>
+        <NavTab onClick={signOut}>Log out</NavTab>
       </NavRight>
     </Container>
   </Nav>
 );
 
 Navigation.propTypes = {
+  signOut: PropTypes.func.isRequired,
   mobileNavActive: PropTypes.bool.isRequired,
   toggleMobileNav: PropTypes.func.isRequired,
 };
 
-export default Navigation;
+export default connect(null, actions)(Navigation);
