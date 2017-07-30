@@ -46,7 +46,7 @@ const Navigation = ({ authenticated, signOut, mobileNavActive, toggleMobileNav }
       </NavToggle>
       <NavRight hasMenu isActive={mobileNavActive}>
         { authenticated ? generateRightTabs(tabs.privateTabs) : generateRightTabs(tabs.publicTabs) }
-        { !authenticated && <NavTab to="/signin">Sign In</NavTab>}
+        { !authenticated && <NavTabWithActive to="/signin">Sign In</NavTabWithActive>}
         { authenticated &&
           <NavTab>
             <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>

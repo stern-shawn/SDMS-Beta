@@ -24,7 +24,7 @@ const signInEpic = (action$) =>
           localStorage.setItem('token', response.token);
           localStorage.setItem('userProfile', JSON.stringify(response.userProfile));
           // Redirect to success page or something to be defined later
-          // browserHistory.push('/TBD');
+          browserHistory.push('/dashboard');
           // Dispatch action to save data to store
           return signInSuccess(response);
         })

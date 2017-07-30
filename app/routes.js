@@ -56,6 +56,15 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/signin',
+      name: 'Sign In',
+      getComponent(nextState, cb) {
+        import('containers/SignIn')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
