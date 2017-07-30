@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import * as actions from 'clientAuth/actions';
-
+import {
+  makeSelectAuthenticated,
+} from 'clientAuth/selectors';
 // Styles
 import bulma from 'styles/bulma.scss';
 
@@ -23,7 +26,7 @@ import tabs from './navigation.json';
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
 
-const Navigation = ({ signOut, mobileNavActive, toggleMobileNav }) => (
+const Navigation = ({ authenticated, signOut, mobileNavActive, toggleMobileNav }) => (
   <Nav hasShadow>
     <Container>
       <NavLeft>
@@ -39,22 +42,30 @@ const Navigation = ({ signOut, mobileNavActive, toggleMobileNav }) => (
       </NavToggle>
       <NavRight hasMenu isActive={mobileNavActive}>
         {tabs.map((tab, idx) => <NavTabWithActive isHiddenTablet to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
-        <NavTab>
-          <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
-            <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />
-          </figure>
-          Profile
-        </NavTab>
-        <NavTab onClick={signOut}>Log out</NavTab>
+        {!authenticated && <NavTab to="/signin">Sign In</NavTab>}
+        { authenticated &&
+          <NavTab>
+            <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
+              <img src="http://bulma.io/images/jgthms.png" alt="Profile avatar" />
+            </figure>
+            Profile
+          </NavTab>
+        }
+        {authenticated && <NavTab onClick={signOut}>Sign out</NavTab>}
       </NavRight>
     </Container>
   </Nav>
 );
 
 Navigation.propTypes = {
+  authenticated: PropTypes.bool.isRequired,
   signOut: PropTypes.func.isRequired,
   mobileNavActive: PropTypes.bool.isRequired,
   toggleMobileNav: PropTypes.func.isRequired,
 };
 
-export default connect(null, actions)(Navigation);
+const mapStateToProps = createStructuredSelector({
+  authenticated: makeSelectAuthenticated(),
+});
+
+export default connect(mapStateToProps, actions)(Navigation);
