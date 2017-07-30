@@ -22,6 +22,7 @@ import { useScroll } from 'react-router-scroll';
 
 // Import root app
 import App from 'containers/App';
+import { AUTH_USER } from 'clientAuth/constants';
 
 // Import selector for `syncHistoryWithStore`
 import { makeSelectLocationState } from 'containers/App/selectors';
@@ -78,6 +79,22 @@ const rootRoute = {
   component: App,
   childRoutes: createRoutes(store),
 };
+
+// Persistent user login
+const token = localStorage.getItem('token');
+const userProfile = localStorage.getItem('userProfile');
+// If the user has a token, consider them to already be signed in
+if (token && userProfile) {
+  // Update state prior to render. Store has the dispatch method built in so we can dispatch actions
+  // at this level of the app!
+  store.dispatch({
+    type: AUTH_USER,
+    payload: {
+      token,
+      userProfile: JSON.parse(userProfile),
+    },
+  });
+}
 
 const render = () => {
   ReactDOM.render(
