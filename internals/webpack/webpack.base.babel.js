@@ -82,6 +82,10 @@ module.exports = (options) => ({
         limit: 10000,
       },
     },
+    {
+      test: /\.node$/,
+      loader: 'node-loader',
+    },
     ],
   },
   plugins: options.plugins.concat([
@@ -108,6 +112,7 @@ module.exports = (options) => ({
     extensions: [
       '.js',
       '.jsx',
+      '.node',
       '.react.js',
     ],
     mainFields: [
@@ -115,6 +120,12 @@ module.exports = (options) => ({
       'jsnext:main',
       'main',
     ],
+  },
+  node: {
+    fs: 'empty',
+    module: 'empty',
+    net: 'empty',
+    tls: 'empty',
   },
   devtool: options.devtool,
   target: 'web', // Make web variables accessible to webpack, e.g. window
