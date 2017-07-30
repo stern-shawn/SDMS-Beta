@@ -18,9 +18,8 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 
 class SignIn extends Component {
-  onSubmit = (formProps) => {
-    const [email, password] = [formProps.get('email'), formProps.get('password')];
-    // const password = formProps.get('password');
+  onSubmit = (values) => {
+    const [email, password] = [values.get('email'), values.get('password')];
     this.props.signIn(email, password);
   }
 
