@@ -1,7 +1,7 @@
 import { combineEpics } from 'redux-observable';
-// import {
-//   getAboutPageEpic,
-// } from 'containers/AboutPage/epic';
+import {
+  signInEpic,
+} from 'clientAuth/epic';
 import {
   closeMobileNavEpic,
 } from 'containers/App/epic';
@@ -13,6 +13,7 @@ import {
 
 const rootEpic = (...args) => combineEpics(
   closeMobileNavEpic,
+  signInEpic,
 )(...args, { });
 
 export default rootEpic;

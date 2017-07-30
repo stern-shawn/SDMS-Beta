@@ -24,7 +24,8 @@ function authReducer(state = initialState, action) {
     case AUTH_ERROR:
       console.log('Error in sign-in/up process');
       return state
-        .set('errors', action.payload.error);
+        .set('errors', action.payload.error)
+        .set('inProgress', false);
     case AUTH_USER:
       console.log('User authenticated');
       console.log(action.payload);

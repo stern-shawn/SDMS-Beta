@@ -16,7 +16,10 @@ import {
 function signIn(email, password) {
   return {
     type: SIGN_IN,
-    credentials: { email, password },
+    payload: {
+      email,
+      password,
+    },
   };
 }
 
