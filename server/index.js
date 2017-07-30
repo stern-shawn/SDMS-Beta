@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const mongoose = require('mongoose');
 
 // We need to include our schemas before they are referenced in the routers/controllers
@@ -23,6 +24,7 @@ mongoose.connect(process.env.MLAB, {
 });
 
 // Back-end api/data management routing
+app.use(morgan('dev'));  // Logging middleware
 app.use(bodyParser.json());
 app.use('/api', api);
 
