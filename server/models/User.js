@@ -13,7 +13,11 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    validate: [validator.isEmail, 'Invalid Email Address'],
+    validate: {
+      isAsync: true,
+      validator: validator.isEmail,
+      message: 'Invalid Email Address',
+    },
     required: 'Please supply an email address',
   },
   password: {
