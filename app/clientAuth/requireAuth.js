@@ -24,9 +24,9 @@ export default function (ComposedComponent) {
       }
     }
 
-    // Render the passed component, and pass down any addition properties that we've added using ES6 spread
+    // Render the passed component if authenticated, and pass down any additional properties that we've added using ES6 spread
     render() {
-      return <ComposedComponent {...this.props} />;
+      return this.props.authenticated && <ComposedComponent {...this.props} />;
     }
   }
 
