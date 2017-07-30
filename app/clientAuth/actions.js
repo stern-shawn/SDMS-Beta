@@ -1,5 +1,5 @@
 /*
- * Blog Actions
+ * Auth Actions
  */
 
 import {
