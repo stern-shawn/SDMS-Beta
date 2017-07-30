@@ -3,6 +3,8 @@
  */
 
 import {
+  AUTH_ERROR,
+  AUTH_USER,
   SIGN_IN,
   SIGN_OUT,
 } from './constants';
@@ -24,6 +26,28 @@ function signIn(email, password) {
 }
 
 /**
+ * Error action for failed sign in operations
+ * @param {object} err  XHR error object, expected to contain xhr.statusText field
+ * @return {object}     An action object of type AUTH_ERROR and error message payload
+ */
+const signInError = (err) => ({
+  type: AUTH_ERROR,
+  payload: {
+    error: err.xhr.statusText,
+  },
+});
+
+/**
+ * Success action for user sign in
+ * @param {object} payload  XHR response object, expected format of { token, userProfile }
+ * @return {object}         An action object of type AUTH_USER and payload of user auth data
+ */
+const signInSuccess = (payload) => ({
+  type: AUTH_USER,
+  payload,
+});
+
+/**
  * Request by the user to sign in
  *
  * @return {object}    An action object of type SIGN_OUT
@@ -36,5 +60,7 @@ function signOut() {
 
 export {
   signIn,
+  signInError,
+  signInSuccess,
   signOut,
 };

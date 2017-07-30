@@ -7,32 +7,21 @@ import {
   SIGN_IN,
   SIGN_OUT,
 } from './constants';
-
-const signInSuccess = (res) => ({
-  type: AUTH_USER,
-  payload: {
-    token: res.token,
-    userProfile: {
-      firstName: res.userProfile.firstName,
-    },
-  },
-});
+import {
+  signInError,
+  signInSuccess,
+} from './actions';
 
 const signInEpic = (action$) =>
   action$.ofType(SIGN_IN)
     .switchMap((action) =>
       ajax.post(
-        '/api/signin',
-        action.payload,
-        { 'Content-Type': 'application/json' }
+        '/api/signin',  // Endpoint URI
+        action.payload, // SIGN_IN payload object resolves to { email, password } to fit endpoint
+        { 'Content-Type': 'application/json' } // Need to explicitly define that we're sending JSON
       )
         .map((res) => signInSuccess(res.response))
-        .catch((err) => Observable.of({
-          type: AUTH_ERROR,
-          payload: {
-            error: err.xhr.statusText,
-          },
-        }))
+        .catch((err) => Observable.of(signInError(err)))
     );
 
 export {
