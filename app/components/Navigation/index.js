@@ -26,6 +26,10 @@ import tabs from './navigation.json';
 // which forwards all given props and injecs the activeClassName prop for less typing
 const NavTabWithActive = (props) => <NavTab {...props} activeClassName={bulma['is-active']} />;
 
+const generateLeftTabs = (tabList) => tabList.map((tab, idx) => <NavTabWithActive isHiddenMobile to={tab.to} key={idx}>{tab.title}</NavTabWithActive>);
+
+const generateRightTabs = (tabList) => tabList.map((tab, idx) => <NavTabWithActive isHiddenTablet to={tab.to} key={idx}>{tab.title}</NavTabWithActive>);
+
 const Navigation = ({ authenticated, signOut, mobileNavActive, toggleMobileNav }) => (
   <Nav hasShadow>
     <Container>
@@ -33,7 +37,7 @@ const Navigation = ({ authenticated, signOut, mobileNavActive, toggleMobileNav }
         <NavItem to="/">
           <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo" />
         </NavItem>
-        {tabs.map((tab, idx) => <NavTabWithActive isHiddenMobile to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
+        { authenticated ? generateLeftTabs(tabs.privateTabs) : generateLeftTabs(tabs.publicTabs) }
       </NavLeft>
       <NavToggle isActive={mobileNavActive} onClick={toggleMobileNav}>
         <span></span>
@@ -41,8 +45,8 @@ const Navigation = ({ authenticated, signOut, mobileNavActive, toggleMobileNav }
         <span></span>
       </NavToggle>
       <NavRight hasMenu isActive={mobileNavActive}>
-        {tabs.map((tab, idx) => <NavTabWithActive isHiddenTablet to={tab.to} key={idx}>{tab.title}</NavTabWithActive>)}
-        {!authenticated && <NavTab to="/signin">Sign In</NavTab>}
+        { authenticated ? generateRightTabs(tabs.privateTabs) : generateRightTabs(tabs.publicTabs) }
+        { !authenticated && <NavTab to="/signin">Sign In</NavTab>}
         { authenticated &&
           <NavTab>
             <figure className={`${bulma.image} ${bulma['is-16x16']}`} style={{ marginRight: '8px' }}>
@@ -51,7 +55,7 @@ const Navigation = ({ authenticated, signOut, mobileNavActive, toggleMobileNav }
             Profile
           </NavTab>
         }
-        {authenticated && <NavTab onClick={signOut}>Sign out</NavTab>}
+        { authenticated && <NavTab onClick={signOut}>Sign out</NavTab>}
       </NavRight>
     </Container>
   </Nav>

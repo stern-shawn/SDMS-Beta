@@ -1,19 +1,30 @@
-[
-  {
-    "title": "Home",
-    "to": "/"
-  },
-  {
-    "title": "Dashboard",
-    "to": "/dashboard"
-  },
-  {
-    "title": "Training Log",
-    "to": "/log"
-  },
-  {
-    "title": "Coach",
-    "to": "/coach"
-  }
-]
-
+{
+  "publicTabs": [
+    {
+      "title": "Home",
+      "to": "/"
+    },
+    {
+      "title": "About",
+      "to": "/about"
+    }
+  ],
+  "privateTabs": [
+    {
+      "title": "Home",
+      "to": "/"
+    },
+    {
+      "title": "Dashboard",
+      "to": "/dashboard"
+    },
+    {
+      "title": "Train",
+      "to": "/train"
+    },
+    {
+      "title": "Coach",
+      "to": "/coach"
+    }
+  ]
+}
