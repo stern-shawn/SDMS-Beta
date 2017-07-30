@@ -122,6 +122,7 @@ module.exports = (options) => ({
     ],
   },
   node: {
+    dns: 'empty',
     fs: 'empty',
     module: 'empty',
     net: 'empty',

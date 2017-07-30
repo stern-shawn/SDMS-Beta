@@ -49,5 +49,15 @@ userSchema.pre('save', function preSave(next) {
   });
 });
 
+userSchema.methods.comparePassword = function (candidatePassword, callback) {
+  // this.password refers to the password on this instance
+  // Internally, bcrypt is salt/hashing the incoming password to compare with the stored value
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) { return callback(err); }
+
+    callback(null, isMatch);
+  });
+};
+
 // Create and export the model for use
 module.exports = mongoose.model('User', userSchema);
