@@ -1,5 +1,5 @@
 /* eslint consistent-return:0 */
-
+require('dotenv').config();
 const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
@@ -13,7 +13,13 @@ const ngrok = (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? require('ngr
 const resolve = require('path').resolve;
 const app = express();
 
+// DB setup
+mongoose.connect(process.env.MLAB, {
+  useMongoClient: true, // To get rid of the deprecation warning for connect() without config
+});
+
 // Back-end api/data management routing
+app.use(bodyParser.json());
 app.use('/api', api);
 
 // In production we need to pass these values in instead of relying on webpack
