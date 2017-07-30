@@ -4,6 +4,10 @@ const express = require('express');
 const logger = require('./logger');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+
+// We need to include our schemas before they are referenced in the routers/controllers
+require('./models/User');
+
 const api = require('./apis');
 
 const argv = require('minimist')(process.argv.slice(2));
