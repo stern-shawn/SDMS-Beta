@@ -2,9 +2,6 @@ import { ajax } from 'rxjs/observable/dom/ajax';
 import { Observable } from 'rxjs';
 import { browserHistory } from 'react-router';
 import {
-  AUTH_ERROR,
-  AUTH_USER,
-  DEAUTH_USER,
   SIGN_IN,
   SIGN_OUT,
 } from './constants';
