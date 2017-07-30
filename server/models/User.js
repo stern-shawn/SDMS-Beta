@@ -1,6 +1,7 @@
 /* eslint consistent-return:0 */
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
+const validator = require('validator');
 
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
@@ -12,6 +13,7 @@ const userSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true,
+    validate: [validator.isEmail, 'Invalid Email Address'],
     required: 'Please supply an email address',
   },
   password: {
