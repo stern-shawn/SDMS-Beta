@@ -36,7 +36,7 @@ class SignIn extends Component {
     return (
       <section className={bulma.section}>
         <div className={bulma.container}>
-          <div className={`${bulma.columns}  ${bulma['is-centered']}`}>
+          <div className={`${bulma.columns} ${bulma['is-centered']}`}>
             <div className={`${bulma.column} ${bulma['is-half-desktop']} ${bulma['is-two-thirds-tablet']}`}>
               <form onSubmit={handleSubmit(this.onSubmit)}>
                 <Field name="email" type="text" component={renderField} label="Email" />
