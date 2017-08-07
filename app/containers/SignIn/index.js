@@ -35,20 +35,28 @@ class SignIn extends Component {
 
     return (
       <section className={bulma.section}>
-        <form className={bulma.container} onSubmit={handleSubmit(this.onSubmit)}>
-          <Field name="email" type="text" component={renderField} label="Email" />
-          <Field name="password" type="password" component={renderField} label="Password" />
+        <div className={bulma.container}>
+          <div className={`${bulma.columns}  ${bulma['is-centered']}`}>
+            <div className={`${bulma.column} ${bulma['is-half-desktop']} ${bulma['is-two-thirds-tablet']}`}>
+              <form onSubmit={handleSubmit(this.onSubmit)}>
+                <Field name="email" type="text" component={renderField} label="Email" />
+                <Field name="password" type="password" component={renderField} label="Password" />
 
-          <div className={`${bulma.field} ${bulma['is-grouped']}`}>
-            <div className={bulma.control}>
-              <button type="submit" className={`${bulma.button} ${bulma['is-primary']}`}>Submit</button>
-            </div>
-            <div className={bulma.control}>
-              <button className={`${bulma.button} ${bulma['is-link']}`}>Cancel</button>
+                <div className={`${bulma.field} ${bulma['is-grouped']} ${bulma['is-grouped-centered']}`}>
+                  <div className={bulma.control}>
+                    <button type="submit" className={`${bulma.button} ${bulma['is-primary']}`}>
+                      <span className={bulma.icon}>
+                        <i className="fa fa-sign-in" />
+                      </span>
+                      <span>Sign In</span>
+                    </button>
+                  </div>
+                </div>
+                { errors && <p className={`${bulma.help} ${bulma['is-danger']}`}>{errors}</p>}
+              </form>
             </div>
           </div>
-          { errors && <p className={`${bulma.help} ${bulma['is-danger']}`}>{errors}</p>}
-        </form>
+        </div>
       </section>
     );
   }
